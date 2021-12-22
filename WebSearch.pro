@@ -1,4 +1,4 @@
-#   BasePlugin is an extention for Swifty Assistant.
+#   WebSearch is an extention for Swifty Assistant.
 #	
 #   Copyright (C) <2021>  <SwiftyApp>
 #
@@ -18,20 +18,17 @@
 TEMPLATE        = lib
 CONFIG         += plugin
 QT             += core
-TARGET          = $$qtLibraryTarget(baseplugin)
+TARGET          = $$qtLibraryTarget(websearch)
 
-EXAMPLE_FILES = src/res/baseplugin.json
+EXAMPLE_FILES = src/res/websearch.json
 
 INSTALLS += target
 
 CONFIG += install_ok
 
 HEADERS += \
-    src/baseplugin.h \
+    src/websearch.h \
     src/plugininterface.h
 
 SOURCES += \
-    src/baseplugin.cpp
-
-RESOURCES += \
-    src/res/res.qrc
+    src/websearch.cpp

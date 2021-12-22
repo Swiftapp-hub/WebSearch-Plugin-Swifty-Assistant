@@ -1,4 +1,4 @@
-/* BasePlugin is an extention for Swifty Assistant.
+/* WebSearch is an extention for Swifty Assistant.
 
    Copyright (C) <2021>  <SwiftyApp>
 
@@ -22,10 +22,10 @@
 #include <QtPlugin>
 #include "plugininterface.h"
 
-class BasePlugin : public QObject, PluginInterface
+class WebSearch : public QObject, PluginInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "fr.swiftapp.swiftyassistant.plugin" FILE "res/baseplugin.json")
+    Q_PLUGIN_METADATA(IID "fr.swiftapp.swiftyassistant.plugin" FILE "res/websearch.json")
     Q_INTERFACES(PluginInterface)
 
 public:

@@ -1,4 +1,4 @@
-/* BasePlugin is an extention for Swifty Assistant.
+/* WebSearch is an extention for Swifty Assistant.
 
    Copyright (C) <2021>  <SwiftyApp>
 
@@ -15,24 +15,24 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-#include "baseplugin.h"
+#include "websearch.h"
 
 #include <QFile>
 #include <QLocale>
 
-#define PLUGIN_ID "fr.swifty.baseplugin"
+#define PLUGIN_ID "fr.swifty.websearch"
 
 /**
  * Return the keywords with the answers that match in xml format
  *
  * @return the keywords in xml format
  */
-QString BasePlugin::getDataXml()
+QString WebSearch::getDataXml()
 {
     QString locale = QLocale::system().name().section('_', 0, 0);
-    QFile file(":/XML/BasePluginData_"+locale+".xml");
+    QFile file(":/XML/WebSearchData_"+locale+".xml");
     if (!file.exists()) {
-        file.setFileName(":/XML/BasePluginData_en.xml");
+        file.setFileName(":/XML/WebSearchData_en.xml");
     }
     file.open(QIODevice::ReadOnly);
 
@@ -44,7 +44,7 @@ QString BasePlugin::getDataXml()
  *
  * @return the id
  */
-QString BasePlugin::pluginId()
+QString WebSearch::pluginId()
 {
     return PLUGIN_ID;
 }
@@ -54,13 +54,9 @@ QString BasePlugin::pluginId()
  *
  * @return the list of proposals
  */
-QList<QString> BasePlugin::getCommande()
+QList<QString> WebSearch::getCommande()
 {
     QList<QString> list;
-    QString locale = QLocale::system().name().section('_', 0, 0);
-
-    if (locale == "fr") list << "Entrez ici les propositions principals";
-    else list << "Enter the main proposals here";
 
     return list;
 }
@@ -68,12 +64,12 @@ QList<QString> BasePlugin::getCommande()
 /**
  * Called when a special action is defined in the xml
  */
-void BasePlugin::execAction(QList<QString>) {}
+void WebSearch::execAction(QList<QString>) {}
 
 /**
  * Called when a custom interface is displayed and sends a message
  */
-void BasePlugin::messageReceived(QString, QString id)
+void WebSearch::messageReceived(QString, QString id)
 {
     if (id == PLUGIN_ID) {
         // Insert here the code

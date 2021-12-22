@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/XML">
-        <file>BasePluginData_fr.xml</file>
-        <file>BasePluginData_en.xml</file>
-    </qresource>
-</RCC>

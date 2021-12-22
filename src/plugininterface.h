@@ -1,4 +1,4 @@
-/* BasePlugin is an extention for Swifty Assistant.
+/* WebSearch is an extention for Swifty Assistant.
 
    Copyright (C) <2021>  <SwiftyApp>
 
