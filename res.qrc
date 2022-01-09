@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>src/res/DetailDuckDuckGo.qml</file>
+    </qresource>
+</RCC>

@@ -17,7 +17,7 @@
 
 TEMPLATE        = lib
 CONFIG         += plugin
-QT             += core
+QT             += core xml webengine xml
 TARGET          = $$qtLibraryTarget(websearch)
 
 EXAMPLE_FILES = src/res/websearch.json
@@ -32,3 +32,6 @@ HEADERS += \
 
 SOURCES += \
     src/websearch.cpp
+
+RESOURCES += \
+    res.qrc

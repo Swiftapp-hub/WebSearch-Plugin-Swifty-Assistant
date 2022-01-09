@@ -1,6 +1,6 @@
-/* WebSearch is an extention for Swifty Assistant.
+/* Swifty Assistant is a simple, user-friendly assistant based on an extension system.
 
-   Copyright (C) <2021>  <SwiftyApp>
+   Copyright (C) <2021>  <SwiftApp>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ public:
     virtual QObject* getObject() = 0;
 
 signals:
-    void sendMessage(QString reply, bool isFin, QString typeMessage, QList<QString> url, QList<QString> textUrl);
+    void sendMessage(QString reply, bool isFin, QString typeMessage, QString id, QList<QString> url = QList<QString>(), QList<QString> textUrl = QList<QString>());
     void sendMessageToQml(QString message);
     void showQml(QString qml, QString id);
     void execAction(QString action);

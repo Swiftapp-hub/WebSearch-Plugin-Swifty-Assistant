@@ -20,6 +20,8 @@
 
 #include <QObject>
 #include <QtPlugin>
+#include <QtNetwork>
+
 #include "plugininterface.h"
 
 class WebSearch : public QObject, PluginInterface
@@ -35,14 +37,26 @@ public:
     QList<QString> getCommande() override;
     QObject* getObject() { return this; }
 
+private:
+    QNetworkAccessManager networkManager;
+    bool isFirst = true;
+
+    bool isDetails = false;
+    QString urlDuckDuckGo;
+    QString cmdText;
+
 signals:
-    void sendMessage(QString reply, bool isFin, QString typeMessage, QList<QString> url, QList<QString> textUrl);
+    void sendMessage(QString reply, bool isFin, QString typeMessage, QString id, QList<QString> url = QList<QString>(), QList<QString> textUrl = QList<QString>());
     void sendMessageToQml(QString message);
     void showQml(QString qml, QString id);
     void execAction(QString action);
 
+    void html(QString html);
+
 public slots:
     void messageReceived(QString message, QString pluginIid) override;
+
+    void handleNetworkData(QNetworkReply *networkReply);
 };
 
 #endif
