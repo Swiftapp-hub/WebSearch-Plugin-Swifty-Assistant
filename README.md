@@ -4,7 +4,7 @@
 
 WebSearch is a plugin compatible with [Swifty Assistant](https://github.com/Swiftapp-hub/Swifty-Assistant) that provides results from the internet.
 
-Compatible with Swifty Assistant version 1.0.1-alpha2 or higher.
+Compatible with Swifty Assistant version 1.0.1-alpha4 or higher.
 
 ## Manual build
 
