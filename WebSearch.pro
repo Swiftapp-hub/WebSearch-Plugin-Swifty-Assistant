@@ -26,6 +26,8 @@ INSTALLS += target
 
 CONFIG += install_ok
 
+TRANSLATIONS += ts/websearch_en.ts
+
 HEADERS += \
     src/websearch.h \
     src/plugininterface.h

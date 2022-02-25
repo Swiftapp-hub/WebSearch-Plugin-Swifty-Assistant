@@ -32,14 +32,7 @@
  */
 QString WebSearch::getDataXml()
 {
-    const QString locale = QLocale::system().name().section('_', 0, 0);
-    QFile file(":/XML/WebSearchData_"+locale+".xml");
-    if (!file.exists()) {
-        file.setFileName(":/XML/WebSearchData_en.xml");
-    }
-    file.open(QIODevice::ReadOnly);
-
-    return file.readAll();
+    return nullptr;
 }
 
 /**
@@ -69,7 +62,22 @@ QList<QString> WebSearch::getCommande()
  */
 void WebSearch::execAction(QList<QString> cmd)
 {
-    if (isFirst) connect(&networkManager, &QNetworkAccessManager::finished, this, &WebSearch::handleNetworkData);
+    if (isFirst) {
+        QString locale = QLocale::system().name().section('_', 0, 0);
+
+        QTranslator translator;
+        if (!translator.load(QString(":/ts/swiftyassistant_") + locale != "fr" ? locale : "")) {
+            if (locale != "fr") {
+                translator.load(QString(":/ts/swiftyassistant_en"));
+                QCoreApplication::installTranslator(&translator);
+            }
+        }
+        else {
+            QCoreApplication::installTranslator(&translator);
+        }
+
+        connect(&networkManager, &QNetworkAccessManager::finished, this, &WebSearch::handleNetworkData);
+    }
     isFirst = false;
 
     if (cmd.at(0) == "websearch") {
@@ -91,6 +99,11 @@ void WebSearch::messageReceived(QString, QString id)
     if (id == PLUGIN_ID) {
         // Insert here the code
     }
+}
+
+QString WebSearch::formatTextForYoutube(QString text)
+{
+    return text.replace(" ", "+");
 }
 
 void WebSearch::handleNetworkData(QNetworkReply *networkReply)
@@ -155,7 +168,7 @@ void WebSearch::handleNetworkData(QNetworkReply *networkReply)
             text.append("...");
 
             emit sendMessage(tr("Voici ce que j'ai trouver sur internet pour ")+heading+":", false, "message", PLUGIN_ID);
-            emit sendMessage(text, true, "message", PLUGIN_ID, QList<QString>() << "showDetails", QList<QString>() << tr("Detail"));
+            emit sendMessage(text, true, "message", PLUGIN_ID, QList<QString>() << "showDetails", QList<QString>() << tr("Détail"));
         }
         else if (isResult && isDetails) {
             QFile qmlFile(":/qml/src/res/DetailDuckDuckGo.qml");
@@ -175,7 +188,7 @@ void WebSearch::handleNetworkData(QNetworkReply *networkReply)
             isDetails = false;
         }
         else {
-            emit sendMessage(tr("Désolé, je ne comprends pas ! 😕"), true, "message", PLUGIN_ID, QList<QString>() << "web_message with_action_btn search "+cmdText, QList<QString>() << tr("Chercher sur le web"));
+            emit sendMessage(tr("Désolé, je ne comprends pas ! 😕 Chercher sur :"), true, "message", PLUGIN_ID, QList<QString>() << "web_message with_action_btn search "+cmdText << "web_message with_action_btn site https://www.youtube.com/results?search_query="+formatTextForYoutube(cmdText), QList<QString>() << "DuckDuckGo" << "Youtube");
         }
     }
     else {

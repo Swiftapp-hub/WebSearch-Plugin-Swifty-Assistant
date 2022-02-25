@@ -38,6 +38,8 @@ public:
     QObject* getObject() { return this; }
 
 private:
+    QString formatTextForYoutube(QString text);
+
     QNetworkAccessManager networkManager;
     bool isFirst = true;
 

@@ -175,10 +175,10 @@ Item {
 
                     NumberAnimation {
                         id: anim2
-                        target: link
+                        target: linkSource
                         duration: 500
                         from: 0.2
-                        to: link.opacity
+                        to: linkSource.opacity
                         property: "opacity"
                     }
                 }
